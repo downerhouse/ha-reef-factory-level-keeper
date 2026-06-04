@@ -1,0 +1,18 @@
+test_command:
+  name: Test Command
+  description: Send a raw websocket command to the Smart Level Keeper.
+  fields:
+    command:
+      required: true
+      selector:
+        text:
+
+    subcommand:
+      required: true
+      selector:
+        text:
+
+    payload_hex:
+      required: false
+      selector:
+        text:
