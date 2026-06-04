@@ -23,6 +23,13 @@ async def async_setup_entry(
             CONF_NAME,
             "Reef Factory Smart Level Keeper",
         ),
+        serial_number=entry.data.get(
+            "serial_number"
+        ),
+        firmware_version=entry.data.get(
+            "firmware_version",
+            "0.0.0",
+        ),
     )
 
     hass.data.setdefault(DOMAIN, {})[

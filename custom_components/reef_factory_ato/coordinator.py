@@ -33,13 +33,20 @@ _LOGGER = logging.getLogger(__name__)
 class ReeffactoryCoordinator:
     """Manages the persistent WebSocket connection to a Reef Factory device."""
 
-    def __init__(self, hass: HomeAssistant, host: str, name: str) -> None:
+    def __init__(
+        self,
+        hass: HomeAssistant,
+        host: str,
+        name: str,
+        serial_number: str | None = None,
+        firmware_version: str = "0.0.0",
+    ) -> None:
         self.hass = hass
         self.host = host
         self.name = name
 
-        self.serial_number: str | None = None
-        self.firmware_version: str = "0.0.0"
+        self.serial_number: str | None = serial_number
+        self.firmware_version: str = firmware_version
 
         self.lk_data: dict = {}
 
@@ -59,7 +66,7 @@ class ReeffactoryCoordinator:
     @property
     def unique_id_prefix(self) -> str:
         """Return a stable unique ID prefix for entities."""
-        return self.serial_number
+        return self.serial_number or self.host
 
     @property
     def device_info(self) -> dict:
