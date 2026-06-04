@@ -768,6 +768,16 @@ class ReeffactoryCoordinator:
 
         await self._ws.send_bytes(msg)
 
+        user_msg = build_message(
+            self.serial_number,
+            "get",
+            "user",
+        )
+
+        _LOGGER.debug("TX GET USER")
+
+        await self._ws.send_bytes(user_msg)
+
     async def _ping_loop(self) -> None:
         """Send periodic pings and verify pong responses."""
 
